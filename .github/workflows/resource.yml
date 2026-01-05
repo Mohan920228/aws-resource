@@ -2,17 +2,26 @@ name: Manual Test
 
 on:
   workflow_dispatch:
+  
+  
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    concurrency:
+      group: sleep
+      cancel-in-progress: true
     steps:
       - run: echo "Manual trigger works"
       - name: sleep
         run: sleep 600
-  terraform:
-    runs-on: ubuntu-latest
 
+  terraform:
+    needs: [test]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write 
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
