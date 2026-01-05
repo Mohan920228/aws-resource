@@ -1,9 +1,8 @@
 name: Resource Provision
 
 on:
-  # push:
-    workflow_dispatch:
-      
+  push:
+  workflow_dispatch:
 
 jobs:
   terraform:
