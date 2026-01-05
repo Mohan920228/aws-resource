@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: sleep
-      cancel-in-progress: true
+      cancel-in-progress: false
     steps:
       - run: echo "Manual trigger works"
       - name: sleep
